@@ -1,5 +1,8 @@
-# Netlify-style redirects: force HTTPS and www canonical
-/*  https://www.%{Host}%{Path}  301!
-
-# Redirect non-www to www preserving path
-https://example.com/*   https://www.example.com/:splat   301!
+# Netlify-style redirects: disabled problematic rules that forced www for netlify.app
+# For Netlify subdomains (example: smartgadgetsz.netlify.app) forcing `www.` can cause
+# invalid redirects because `www.smartgadgetsz.netlify.app` is not a valid host.
+# Uncomment and adjust the rules below only if you have a custom domain configured.
+# /*  https://www.%{Host}%{Path}  301!
+#
+# Redirect non-www to www preserving path (example placeholder)
+# https://example.com/*   https://www.example.com/:splat   301!
