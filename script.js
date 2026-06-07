@@ -1,11 +1,7 @@
 const themeToggle = document.getElementById('themeToggle');
 const searchInput = document.getElementById('searchInput');
 const searchClear = document.getElementById('searchClear');
-const cards = Array.from(document.querySelectorAll('.review-card, .product-card, .deal-card'));
-const compareCategory = document.getElementById('compareCategory');
-const compareBudget = document.getElementById('compareBudget');
-const compareAction = document.getElementById('compareAction');
-const compareResult = document.getElementById('compareResult');
+const productCards = Array.from(document.querySelectorAll('.product-card'));
 const newsletterForm = document.getElementById('newsletterForm');
 const newsletterEmail = document.getElementById('newsletterEmail');
 
@@ -26,67 +22,41 @@ themeToggle.addEventListener('click', () => {
   applyTheme(nextTheme);
 });
 
-function filterCards(query) {
+function filterProducts(query) {
   const normalized = query.trim().toLowerCase();
-  cards.forEach(card => {
+  productCards.forEach(card => {
     const text = card.getAttribute('data-search') || card.textContent;
-    if (!normalized || text.toLowerCase().includes(normalized)) {
-      card.style.display = '';
-    } else {
-      card.style.display = 'none';
+    card.style.display = !normalized || text.toLowerCase().includes(normalized) ? 'grid' : 'none';
+  });
+}
+
+if (searchInput) {
+  searchInput.addEventListener('input', event => {
+    filterProducts(event.target.value);
+  });
+}
+
+if (searchClear) {
+  searchClear.addEventListener('click', () => {
+    if (searchInput) {
+      searchInput.value = '';
+      filterProducts('');
+      searchInput.focus();
     }
   });
 }
 
-searchInput.addEventListener('input', event => {
-  filterCards(event.target.value);
-});
-
-searchClear.addEventListener('click', () => {
-  searchInput.value = '';
-  filterCards('');
-  searchInput.focus();
-});
-
-const compareOptions = {
-  smartphone: {
-    budget: 'Best all-round smartphone with long battery life and a balanced camera package.',
-    midrange: 'Top midrange smartphone with high refresh rate display, 5G, and smart AI features.',
-    premium: 'Premium flagship smartphone with the latest chipset, pro-grade camera, and fast charging.'
-  },
-  laptop: {
-    budget: 'Affordable laptop with solid battery life, portability, and productivity essentials.',
-    midrange: 'Balanced laptop for creatives and remote workers with good performance and display.',
-    premium: 'High-end laptop with premium build quality, powerful CPU/GPU, and advanced cooling.'
-  },
-  gaming: {
-    budget: 'Value gaming rig focused on smooth 1080p gameplay and efficient thermal design.',
-    midrange: 'Gaming laptop with strong graphics, adaptive refresh rate, and customizable lighting.',
-    premium: 'Top-tier gaming setup with desktop-level power and fast high-refresh displays.'
-  }
-};
-
-compareAction.addEventListener('click', () => {
-  const category = compareCategory.value;
-  const budget = compareBudget.value;
-  const resultText = compareOptions[category]?.[budget] || 'Choose a category and budget to get a tailored recommendation.';
-  compareResult.innerHTML = `
-    <h3>Recommended ${category.charAt(0).toUpperCase() + category.slice(1)} Option</h3>
-    <p>${resultText}</p>
-  `;
-});
-
-newsletterForm.addEventListener('submit', event => {
-  event.preventDefault();
-  const email = newsletterEmail.value.trim();
-  if (!email) {
-    return;
-  }
-  newsletterForm.innerHTML = `<p class="newsletter-confirmation">Thanks! ${email} is now subscribed to our weekly tech newsletter.</p>`;
-});
+if (newsletterForm) {
+  newsletterForm.addEventListener('submit', event => {
+    event.preventDefault();
+    const email = newsletterEmail.value.trim();
+    if (!email) return;
+    newsletterForm.innerHTML = `<p class="newsletter-confirmation">Thanks! ${email} is now subscribed to our weekly tech updates.</p>`;
+  });
+}
 
 window.addEventListener('DOMContentLoaded', () => {
-  if (searchInput.value) {
-    filterCards(searchInput.value);
+  if (searchInput && searchInput.value) {
+    filterProducts(searchInput.value);
   }
 });
