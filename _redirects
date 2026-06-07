@@ -1,0 +1,5 @@
+# Netlify-style redirects: force HTTPS and www canonical
+/*  https://www.%{Host}%{Path}  301!
+
+# Redirect non-www to www preserving path
+https://example.com/*   https://www.example.com/:splat   301!

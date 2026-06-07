@@ -1,0 +1,14 @@
+RewriteEngine On
+# Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Redirect non-www to www (301) for same domain
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Optional: prevent access to .htaccess via web
+<Files ".htaccess">
+  Order allow,deny
+  Deny from all
+</Files>
