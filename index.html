@@ -18,12 +18,12 @@
     "@graph": [
       {
         "@type": "WebSite",
-        "url": "https://example.com/",
+        "url": "https://techreviewhub.local/",
         "name": "Tech Review Hub",
         "description": "Best mobile phones under 30000 with affiliate links and tech news.",
         "potentialAction": {
           "@type": "SearchAction",
-          "target": "https://example.com/?s={search_term_string}",
+          "target": "https://techreviewhub.local/?s={search_term_string}",
           "query-input": "required name=search_term_string"
         }
       }
@@ -35,14 +35,46 @@
   <div class="page-shell">
     <header class="topbar">
       <div class="brand">
-        <span class="logo-mark">TR</span>
-        <div>
-          <p class="eyebrow">Tech Review Hub</p>
-          <h1>Best Mobiles Under ₹30,000</h1>
-        </div>
+        <a href="#" class="logo-wrap"><span class="logo-mark">TR</span><span class="site-name">Tech Review Hub</span></a>
       </div>
-      <button id="themeToggle" class="btn-icon" aria-label="Toggle dark mode">🌗</button>
+      <nav class="main-nav" aria-label="Main navigation">
+        <div class="nav-item dropdown">
+          <button id="categoryToggle" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Categories ▾</button>
+          <div id="categoryMenu" class="dropdown-menu" aria-hidden="true">
+            <a href="categories/mobile/june26/under-30k/index.html">Mobile</a>
+            <a href="categories/laptops/index.html">Laptops</a>
+            <a href="categories/tws/index.html">TWS</a>
+            <a href="categories/wired-earphones/index.html">Wired Earphones</a>
+            <a href="categories/tablets/index.html">Tablets</a>
+          </div>
+        </div>
+        <a href="#tech-news">News</a>
+        <a href="#about">About</a>
+        <a href="#newsletter">Subscribe</a>
+      </nav>
+      <div class="top-controls">
+        <button id="themeToggle" class="btn-icon" aria-label="Toggle dark mode">🌗</button>
+        <button id="hamburgerBtn" class="hamburger-btn" aria-label="Open menu" aria-expanded="false">☰</button>
+      </div>
     </header>
+
+    <!-- Mobile nav overlay -->
+    <nav id="mobileNav" class="mobile-nav" aria-hidden="true">
+      <button id="mobileNavClose" class="mobile-nav-close" aria-label="Close menu">✕</button>
+      <div class="mobile-nav-links">
+        <button id="mobileCatsToggle" class="mobile-cats-toggle">Categories ▾</button>
+          <div id="mobileCats" class="mobile-cats" aria-hidden="true">
+          <a href="categories/mobile/june26/under-30k/index.html">Mobile</a>
+          <a href="categories/laptops/index.html">Laptops</a>
+          <a href="categories/tws/index.html">TWS</a>
+          <a href="categories/wired-earphones/index.html">Wired Earphones</a>
+          <a href="categories/tablets/index.html">Tablets</a>
+        </div>
+        <a href="#tech-news">News</a>
+        <a href="#about">About</a>
+        <a href="#newsletter">Subscribe</a>
+      </div>
+    </nav>
 
     <section class="hero-panel">
       <p class="section-label">Top picks 2026</p>
@@ -63,19 +95,27 @@
       <section class="section-grid" id="mobile-products">
         <div class="section-header">
           <div>
+            <p class="breadcrumb">
+              <a href="#" class="crumb">Category</a>
+              <span class="sep">→</span>
+              <a href="categories/mobile/june26/under-30k/index.html" class="crumb">Mobile</a>
+              <span class="sep">→</span>
+              <a id="categoryMonth" href="categories/mobile/june26/under-30k/index.html" class="crumb month-link">May26</a>
+              <span class="sep">→</span>
+              <a href="#mobile-products" class="crumb">Under 30k</a>
+            </p>
             <p class="section-label">Best mobile phones</p>
             <h2>Top 5 mobiles under ₹30,000 with specs and buying links</h2>
           </div>
         </div>
 
-        <div class="product-grid">
+          <div class="product-grid">
           <article class="product-card" data-search="moto edge 60 pro" aria-label="Moto Edge 60 Pro">
             <a href="https://amzn.to/4vzOFJf" target="_blank" rel="noopener">
-              <img src="https://via.placeholder.com/800x560?text=Moto+Edge+60+Pro" alt="Moto Edge 60 Pro" loading="lazy">
+              <img src="images/Mobile/June26/moto60pro.png" alt="Moto Edge 60 Pro" loading="lazy" onerror="this.onerror=null;this.src='images/placeholder-phone.svg'">
               <div class="product-copy">
                 <h3>Moto Edge 60 Pro</h3>
                 <p>50MP OIS camera, 144Hz display, 12GB RAM with premium design.</p>
-                <span class="price">₹25,999</span>
                 <span class="btn-link-text">Buy on Amazon</span>
               </div>
             </a>
@@ -83,11 +123,10 @@
 
           <article class="product-card" data-search="oneplus nord ce 6" aria-label="OnePlus Nord CE 6">
             <a href="https://amzn.to/4ed9H9r" target="_blank" rel="noopener">
-              <img src="https://via.placeholder.com/800x560?text=OnePlus+Nord+CE+6" alt="OnePlus Nord CE 6" loading="lazy">
+              <img src="images/Mobile/June26/oneplus6celite.png" alt="OnePlus Nord CE 6" loading="lazy" onerror="this.onerror=null;this.src='images/placeholder-phone.svg'">
               <div class="product-copy">
                 <h3>OnePlus Nord CE 6</h3>
                 <p>120Hz AMOLED, OxygenOS, flagship performance at value price.</p>
-                <span class="price">₹24,499</span>
                 <span class="btn-link-text">Buy on Amazon</span>
               </div>
             </a>
@@ -95,11 +134,10 @@
 
           <article class="product-card" data-search="poco x7 pro" aria-label="Poco X7 Pro">
             <a href="https://amzn.to/4eswH5C" target="_blank" rel="noopener">
-              <img src="https://via.placeholder.com/800x560?text=Poco+X7+Pro" alt="Poco X7 Pro" loading="lazy">
+              <img src="images/Mobile/June26/pocox7pro.png" alt="Poco X7 Pro" loading="lazy" onerror="this.onerror=null;this.src='images/placeholder-phone.svg'">
               <div class="product-copy">
                 <h3>Poco X7 Pro</h3>
                 <p>Super AMOLED display, aggressive pricing, solid performance.</p>
-                <span class="price">₹22,999</span>
                 <span class="btn-link-text">Buy on Amazon</span>
               </div>
             </a>
@@ -107,11 +145,10 @@
 
           <article class="product-card" data-search="infinix gt 30 pro 5g" aria-label="Infinix GT 30 Pro 5G">
             <a href="https://fktr.in/fg1o8uW" target="_blank" rel="noopener">
-              <img src="https://via.placeholder.com/800x560?text=Infinix+GT+30+Pro+5G" alt="Infinix GT 30 Pro 5G" loading="lazy">
+              <img src="images/Mobile/June26/infinix30pro.png" alt="Infinix GT 30 Pro 5G" loading="lazy" onerror="this.onerror=null;this.src='images/placeholder-phone.svg'">
               <div class="product-copy">
                 <h3>Infinix GT 30 Pro 5G</h3>
                 <p>Gaming-focused phone, high refresh display, budget 5G option.</p>
-                <span class="price">₹20,999</span>
                 <span class="btn-link-text">Buy on Flipkart</span>
               </div>
             </a>
@@ -119,15 +156,23 @@
 
           <article class="product-card" data-search="realme gt 7t" aria-label="Realme GT 7T">
             <a href="https://fktr.in/vXNhwv0" target="_blank" rel="noopener">
-              <img src="https://via.placeholder.com/800x560?text=Realme+GT+7T" alt="Realme GT 7T" loading="lazy">
+              <img src="images/Mobile/June26/realmegt7t.png" alt="Realme GT 7T" loading="lazy" onerror="this.onerror=null;this.src='images/placeholder-phone.svg'">
               <div class="product-copy">
                 <h3>Realme GT 7T</h3>
                 <p>Powerful processor, fast charging, premium performance phone.</p>
-                <span class="price">₹28,999</span>
                 <span class="btn-link-text">Buy on Flipkart</span>
               </div>
             </a>
           </article>
+        </div>
+      </section>
+      <section class="section-grid" id="about">
+        <div class="section-header simple-header">
+          <p class="section-label">About us</p>
+          <h2>Who we are</h2>
+        </div>
+        <div class="about-panel">
+          <p>Tech Review Hub curates honest, concise, and up-to-date reviews and deals for smartphones, laptops, and other tech gadgets. We focus on real-world usage, helping you pick the best value phones quickly.</p>
         </div>
       </section>
 
