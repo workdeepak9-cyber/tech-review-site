@@ -72,6 +72,9 @@ function openMobileNav() {
   mobileNav.setAttribute('aria-hidden', 'false');
   if (hamburgerBtn) hamburgerBtn.setAttribute('aria-expanded', 'true');
   document.documentElement.classList.add('no-scroll');
+  // Focus trap: save previously focused element and focus first focusable inside mobile nav
+  lastFocusedBeforeNav = document.activeElement;
+  activateFocusTrap();
 }
 
 function closeMobileNav() {
@@ -80,6 +83,8 @@ function closeMobileNav() {
   mobileNav.setAttribute('aria-hidden', 'true');
   if (hamburgerBtn) hamburgerBtn.setAttribute('aria-expanded', 'false');
   document.documentElement.classList.remove('no-scroll');
+  // Remove focus trap and restore focus
+  deactivateFocusTrap();
 }
 
 if (hamburgerBtn) {
@@ -92,6 +97,54 @@ if (mobileNavClose) {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeMobileNav();
 });
+
+// Focus trap helpers for mobile nav
+let lastFocusedBeforeNav = null;
+let focusTrapHandler = null;
+
+function getFocusableElements(container) {
+  if (!container) return [];
+  return Array.from(container.querySelectorAll('a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])'))
+    .filter(el => !el.hasAttribute('disabled') && el.getAttribute('aria-hidden') !== 'true');
+}
+
+function activateFocusTrap() {
+  if (!mobileNav) return;
+  const focusable = getFocusableElements(mobileNav);
+  if (focusable.length === 0) return;
+  // Focus first element
+  focusable[0].focus();
+  focusTrapHandler = function(e) {
+    if (e.key !== 'Tab') return;
+    const focusableNow = getFocusableElements(mobileNav);
+    if (focusableNow.length === 0) return;
+    const first = focusableNow[0];
+    const last = focusableNow[focusableNow.length - 1];
+    if (e.shiftKey) {
+      if (document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      }
+    } else {
+      if (document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  };
+  document.addEventListener('keydown', focusTrapHandler);
+}
+
+function deactivateFocusTrap() {
+  if (focusTrapHandler) {
+    document.removeEventListener('keydown', focusTrapHandler);
+    focusTrapHandler = null;
+  }
+  if (lastFocusedBeforeNav && typeof lastFocusedBeforeNav.focus === 'function') {
+    lastFocusedBeforeNav.focus();
+  }
+  lastFocusedBeforeNav = null;
+}
 
 // Desktop categories dropdown
 const categoryToggle = document.getElementById('categoryToggle');

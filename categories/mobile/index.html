@@ -15,7 +15,44 @@
       <div class="brand">
         <a href="../../index.html" class="logo-wrap"><span class="logo-mark">TR</span><span class="site-name">Tech Review Hub</span></a>
       </div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <div class="nav-item dropdown">
+          <button id="categoryToggle" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Categories ▾</button>
+          <div id="categoryMenu" class="dropdown-menu" aria-hidden="true">
+            <a href="./index.html">Mobile</a>
+            <a href="../laptops/index.html">Laptops</a>
+            <a href="../tws/index.html">TWS</a>
+            <a href="../wired-earphones/index.html">Wired Earphones</a>
+            <a href="../tablets/index.html">Tablets</a>
+          </div>
+        </div>
+        <a href="../../index.html#tech-news">News</a>
+        <a href="../../index.html#about">About</a>
+        <a href="../../index.html#newsletter">Subscribe</a>
+      </nav>
+      <div class="top-controls">
+        <button id="themeToggle" class="btn-icon" aria-label="Toggle dark mode">🌗</button>
+        <button id="hamburgerBtn" class="hamburger-btn" aria-label="Open menu" aria-expanded="false">☰</button>
+      </div>
     </header>
+
+    <!-- Mobile nav overlay -->
+    <nav id="mobileNav" class="mobile-nav" aria-hidden="true">
+      <button id="mobileNavClose" class="mobile-nav-close" aria-label="Close menu">✕</button>
+      <div class="mobile-nav-links">
+        <button id="mobileCatsToggle" class="mobile-cats-toggle">Categories ▾</button>
+          <div id="mobileCats" class="mobile-cats" aria-hidden="true">
+          <a href="./index.html">Mobile</a>
+          <a href="../laptops/index.html">Laptops</a>
+          <a href="../tws/index.html">TWS</a>
+          <a href="../wired-earphones/index.html">Wired Earphones</a>
+          <a href="../tablets/index.html">Tablets</a>
+        </div>
+        <a href="../../index.html#tech-news">News</a>
+        <a href="../../index.html#about">About</a>
+        <a href="../../index.html#newsletter">Subscribe</a>
+      </div>
+    </nav>
 
     <main>
       <section class="section-grid" id="mobile-products">
@@ -24,10 +61,16 @@
             <p class="breadcrumb">
               <a href="../../index.html" class="crumb">Category</a>
               <span class="sep">→</span>
-              <span class="crumb">Mobile</span>
+              <a href="../../index.html" class="crumb">Mobile</a>
             </p>
             <p class="section-label">Best mobile phones</p>
             <h2>Mobiles available on homepage</h2>
+            <div class="subcats">
+              <strong>Months:</strong>
+              <a href="./june26/index.html">June26</a>
+              <span class="sep">→</span>
+              <a href="./june26/under-30k/index.html">Under 30k</a>
+            </div>
           </div>
         </div>
 
